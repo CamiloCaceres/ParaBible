@@ -5,3 +5,9 @@
 html.dark {
     @apply bg-gray-800 text-gray-100
 }
+html.dark h1 {
+    @apply text-gray-100
+}
+html.dark p {
+    @apply  text-gray-200
+}
