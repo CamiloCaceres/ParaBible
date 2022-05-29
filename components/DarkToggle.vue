@@ -13,7 +13,7 @@ function toggleDark() {
     class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200"
     @click="toggleDark()"
   >
-    <HeroiconsOutlineMoon v-if="color === 'dark'" class="w-6 h-6" aria-hidden="true" />
+    <HeroiconsOutlineMoon v-if="color.value === 'dark'" class="w-6 h-6" aria-hidden="true" />
     <HeroiconsOutlineSun v-else class="w-6 h-6" aria-hidden="true" />
   </button>
 </template>

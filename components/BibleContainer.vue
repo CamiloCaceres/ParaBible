@@ -1,4 +1,18 @@
 <script setup lang="ts">
+const config = useRuntimeConfig()
+
+const query = {
+  bibleId: 'c114c33098c4fef1-01',
+  from: 'GEN.1.1',
+  to: 'GEN.1.7',
+}
+
+const { data, pending, error, refresh } = await useFetch(
+  `https://api.scripture.api.bible/v1/bibles/${query.bibleId}/passages/${query.from}-${query.to}?content-type=json`,
+  {
+    headers: { 'api-key': config.bibleApiKey },
+  },
+)
 const vulgata = {
   name: 'Vulgata',
   text: 'et ait : Faciamus hominem ad imaginem et similitudinem nostram : et praesit piscibus maris, et volatilibus caeli, et bestiis, universaeque terrae, omnique reptili, quod movetur in terra. Et creavit Deus hominem ad imaginem suam : ad imaginem Dei creavit illum, masculum et feminam creavit eos.',
@@ -15,6 +29,11 @@ const bibles = [vulgata, septuaginta, vulgata]
 </script>
 
 <template>
+  <div v-for="content in data.data.content" :key="content">
+    <p v-for="item in content.items" :key="item.attrs.verseId">
+      {{ item.text }}
+    </p>
+  </div>
   <div class="flex justify-center space-x-8">
     <div v-for="bible in bibles" :key="bible.name">
       <DisplayBible :name="bible.name" :text="bible.text" :quote="bible.quote" />
@@ -25,4 +44,4 @@ const bibles = [vulgata, septuaginta, vulgata]
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
     </svg>
   </button>
-</template>
+</template>"data.data.content.0.items.1"

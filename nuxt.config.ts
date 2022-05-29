@@ -32,4 +32,7 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  publicRuntimeConfig: {
+    bibleApiKey: process.env.BIBLE_API,
+  },
 })
